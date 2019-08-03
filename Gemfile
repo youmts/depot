@@ -21,6 +21,8 @@ gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 
+gem 'bulma-rails'
+
 gem 'haml-rails'
 gem 'simple_form'
 
