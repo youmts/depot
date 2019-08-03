@@ -1,16 +1,18 @@
-= simple_form_for @product do |f|
-  - if @product.errors.any?
+= simple_form_for @product, wrapper: :default, defaults: { wrapper: false } do |f|
+  - if f.error_notification.presence
     .notification.is-warning
-      %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
-      %ul
-        - @product.errors.full_messages.each do |message|
-          %li= message
+      = f.error_notification
 
-  .form_input
-    = f.input :title
-    = f.input :description
-    = f.input :image, as: :file
-    = f.input :price
+  = f.input :title, placeholder: "Input title here..."
+  = f.full_error :title
 
-  .form_actions
-    = f.button :submit
+  = f.input :description, placeholder: "Input description here...", html: { rows: "10" }
+  = f.full_error :description
+
+  = f.input :image, as: :file, label: "Please upload image"
+  = f.full_error :image
+
+  = f.input :price, placeholder: "Input price here..."
+  = f.full_error :price
+
+  = f.button :submit, class: "button is-primary"
