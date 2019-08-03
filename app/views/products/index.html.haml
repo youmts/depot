@@ -1,28 +1,28 @@
-%h1 Listing products
+%h1.title Listing products
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th Image
-      %th Price
-      %th
-      %th
-      %th
-
-  %tbody
-    - @products.each do |product|
-      %tr
-        %td= product.title
-        %td= product.description
-        %td
-          = image_tag product.image_url(:thumb)
-        %td= product.price
-        %td= link_to 'Show', product
-        %td= link_to 'Edit', edit_product_path(product)
-        %td= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }
+%ul
+  - @products.each do |product|
+    %li.columns
+      .column.is-2
+        = link_to image_tag(product.image_url(:thumb)), product
+      .column
+        .columns.is-vcentered
+          .column.is-half
+            .field.is-size-3
+              = link_to product.title, product
+          .column.is-half
+            .field.is-size-4<
+              = product.price
+              %span.is-size-5<
+                $
+        = product.description.truncate(200)
+      .column
+        .field
+          = link_to 'Edit', edit_product_path(product), class: "button is-primary"
+        .field
+          = link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' }, class: "button is-primary"
+    %hr
 
 %br
 
-= link_to 'New Product', new_product_path
+= link_to 'New Product', new_product_path, class: "button is-primary"
