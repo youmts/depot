@@ -11,4 +11,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     .container
+      - if notice.presence
+        .notification.is-success
+          = notice
+
       = yield
