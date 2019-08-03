@@ -22,6 +22,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 
 gem 'haml-rails'
+gem 'simple_form'
 
 gem 'carrierwave', '~> 1'
 gem 'rmagick', require: 'RMagick'
