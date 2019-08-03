@@ -4,11 +4,11 @@
   %b Title:
   = @product.title
 %p
-  %b Description:
-  = @product.description
-%p
   %b Image:
   = image_tag @product.image_url
+%p
+  %b Description:
+  = simple_format h @product.description
 %p
   %b Price:
   = @product.price
