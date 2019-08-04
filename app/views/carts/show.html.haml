@@ -2,6 +2,6 @@
 
 .content
   %ul
-    - @cart.cart_items.each do |item|
+    - @cart.items.each do |item|
       %li
         = item.product.title
