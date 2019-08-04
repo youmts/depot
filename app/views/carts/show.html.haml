@@ -1,0 +1,7 @@
+%h1.title カート
+
+.content
+  %ul
+    - @cart.cart_items.each do |item|
+      %li
+        = item.product.title
