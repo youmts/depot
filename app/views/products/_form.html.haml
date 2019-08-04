@@ -3,16 +3,16 @@
     .notification.is-warning
       = f.error_notification
 
+  = f.full_error :title, class: "has-text-danger"
   = f.input :title, placeholder: "Input title here..."
-  = f.full_error :title
 
+  = f.full_error :description, class: "has-text-danger"
   = f.input :description, placeholder: "Input description here...", html: { rows: "10" }
-  = f.full_error :description
 
+  = f.full_error :image, class: "has-text-danger"
   = f.input :image, as: :file, label: "Please upload image"
-  = f.full_error :image
 
+  = f.full_error :price, class: "has-text-danger"
   = f.input :price, placeholder: "Input price here..."
-  = f.full_error :price
 
   = f.button :submit, class: "button is-primary"
