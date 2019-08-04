@@ -23,7 +23,7 @@ class CartItemsController < ApplicationController
   def create
     @cart = current_cart
     product = Product.find(params[:product_id])
-    @cart_item = @cart.items.build(product: product)
+    @cart_item = @cart.add_product(product.id)
 
     if @cart_item.save
       redirect_to @cart_item.cart, notice: 'Cart item was successfully created.'
