@@ -27,7 +27,7 @@ gem 'haml-rails'
 gem 'simple_form'
 
 gem 'carrierwave', '~> 1'
-gem 'rmagick', require: 'RMagick'
+gem 'rmagick'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
