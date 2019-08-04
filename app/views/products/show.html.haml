@@ -1,15 +1,14 @@
-%p
-  %b Title:
+%h1.title
   = @product.title
-%p
-  %b Image:
-  = image_tag @product.image_url
-%p
-  %b Description:
-  = simple_format h @product.description
-%p
+
+= image_tag @product.image_url, size: "320x240", class: "box"
+
+.content
   %b Price:
   = @product.price
+
+.content
+  = simple_format h @product.description
 
 = link_to 'Edit', edit_product_path(@product)
 \|

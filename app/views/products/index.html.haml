@@ -15,7 +15,8 @@
               = product.price
               %span.is-size-5<
                 $
-        = product.description.truncate(200)
+        .is-hidden-mobile
+          = product.description.truncate(200)
       .column
         .field
           = link_to 'Edit', edit_product_path(product), class: "button is-primary"
