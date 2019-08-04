@@ -93,4 +93,10 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.before(:each) do |example|
+    if example.metadata[:type] == :system
+        # 高速なrack_testを使う
+        driven_by :rack_test
+    end
+  end
 end
