@@ -14,9 +14,7 @@
               = link_to product.title, product
           .column.is-half
             .field.is-size-4<
-              = product.price
-              %span.is-size-5<
-                $
+              = number_to_currency(product.price)
         .is-hidden-mobile
           = product.description.truncate(200)
     %hr
