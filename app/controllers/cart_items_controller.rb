@@ -21,7 +21,7 @@ class CartItemsController < ApplicationController
 
   # POST /cart_items
   def create
-    @cart = current_cart
+    @cart = current_cart_or_create
     product = Product.find(params[:product_id])
     @cart_item = @cart.add_product(product.id)
 

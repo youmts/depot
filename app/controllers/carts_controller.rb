@@ -41,7 +41,7 @@ class CartsController < ApplicationController
 
   # DELETE /carts/1
   def destroy
-    @cart = current_cart
+    @cart = current_cart_or_create
     @cart.destroy
     session[:cart_id] = nil
 
