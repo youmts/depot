@@ -24,4 +24,21 @@ RSpec.describe "Cart" do
 
     expect(page).to have_current_path cart_path(Cart.last)
   end
+
+  example "Cartを空にできること" do
+    visit "/"
+
+    expect {
+      click_button "Add to Cart"
+    }.to change(Cart, :count).by(1)
+
+    cart = Cart.last
+
+    visit cart_path(cart)
+    expect {
+      click_button "カートを空にする"
+    }.to change(Cart, :count).by(-1)
+
+    expect { visit cart_path(cart) }.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end

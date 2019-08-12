@@ -5,3 +5,5 @@
     - @cart.items.each do |item|
       %li
         = "#{item.quantity} times; #{item.product.title}"
+
+= button_to 'カートを空にする', @cart, method: :delete, confirm: '本当によいですか？', class: "button is-secondary"

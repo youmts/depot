@@ -41,8 +41,11 @@ class CartsController < ApplicationController
 
   # DELETE /carts/1
   def destroy
+    @cart = current_cart
     @cart.destroy
-    redirect_to carts_url, notice: 'Cart was successfully destroyed.'
+    session[:cart_id] = nil
+
+    redirect_to store_url, notice: 'カートは現在空です'
   end
 
   private
