@@ -1,9 +1,19 @@
 %h1.title カート
 
 .content
-  %ul
+  %table.table.is-striped
     - @cart.items.each do |item|
-      %li
-        = "#{item.quantity} times; #{item.product.title}"
+      %tr
+        %td
+          = "#{item.quantity} times;"
+        %td
+          = item.product.title
+        %td.has-text-right
+          = number_to_currency(item.total_price)
+
+    %tr
+      %td{ colspan: 2 } 合計
+      %td.has-text-right
+        = number_to_currency(@cart.total_price)
 
 = button_to 'カートを空にする', @cart, method: :delete, confirm: '本当によいですか？', class: "button is-secondary"
