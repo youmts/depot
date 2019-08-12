@@ -9,15 +9,13 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    %nav.navbar.is-light{ role: :navigation, aria: { label: "main navigation" } }
+  %body.has-navbar-fixed-top
+    %nav.navbar.is-light.is-fixed-top{ role: :navigation, aria: { label: "main navigation" } }
       .navbar-brand
-        = link_to "PRAGMATIC BOOKSHELF", "/", class: "navbar-item is-size-3"
+        = link_to "PRAGMATIC BOOKSHELF", "/", class: "navbar-item is-size-4"
 
-    %section.section
-      .container
-        - if notice.presence
-          .notification.is-success
-            = notice
-
-        = yield
+    .container
+      - if notice.presence
+        .notification.is-success
+          = notice
+      = yield

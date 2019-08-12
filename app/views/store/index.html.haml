@@ -1,23 +1,39 @@
-%h1.title Product Catalog
+%main.columns
+  .submenu.column.is-3
+    %aside.menu.box
+      カート
+      
+    %aside.menu.box
+      %ul.menu-list
+        %li
+          = link_to "ホーム", "/"
+        %li
+          = link_to "よくある質問", "/"
+        %li
+          = link_to "ニュース", "/"
+        %li
+          = link_to "お問い合わせ", "/"
+  .column
+    %h1.title Product Catalog
 
-%hr
-
-%ul
-  - @products.each do |product|
-    %li.columns
-      .column.is-2
-        = link_to image_tag(product.image_url(:thumb)), product
-      .column
-        .columns.is-vcentered
-          .column
-            .field.is-size-3
-              = link_to product.title, product
-          .column
-            .field.is-size-4<
-              = number_to_currency(product.price)
-          .column
-            = button_to 'Add to Cart', cart_items_path(product_id: product), class: "button is-primary"
-        .is-hidden-mobile
-          = product.description.truncate(200)
     %hr
+
+    %ul
+      - @products.each do |product|
+        %li.columns
+          .column.is-2
+            = link_to image_tag(product.image_url(:thumb)), product
+          .column
+            .columns.is-vcentered
+              .column
+                .field.is-size-3
+                  = link_to product.title, product
+              .column
+                .field.is-size-4<
+                  = number_to_currency(product.price)
+              .column
+                = button_to 'Add to Cart', cart_items_path(product_id: product), class: "button is-primary"
+            .is-hidden-mobile
+              = product.description.truncate(200)
+        %hr
 
