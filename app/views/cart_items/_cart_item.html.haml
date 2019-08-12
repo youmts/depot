@@ -1,0 +1,7 @@
+%tr
+  %td
+    = "#{cart_item.quantity} times;"
+  %td
+    = cart_item.product.title
+  %td.has-text-right
+    = number_to_currency(cart_item.total_price)

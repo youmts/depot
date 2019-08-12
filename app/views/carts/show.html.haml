@@ -2,14 +2,7 @@
 
 .content
   %table.table.is-striped
-    - @cart.items.each do |item|
-      %tr
-        %td
-          = "#{item.quantity} times;"
-        %td
-          = item.product.title
-        %td.has-text-right
-          = number_to_currency(item.total_price)
+    = render @cart.items
 
     %tr
       %td{ colspan: 2 } 合計
