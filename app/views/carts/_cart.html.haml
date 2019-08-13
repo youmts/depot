@@ -2,7 +2,7 @@
 
 .content
   %table.table.is-striped
-    = render cart.items
+    = render cart.items, current_item: current_item
 
     %tr
       %td{ colspan: 2 } 合計

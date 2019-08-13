@@ -2,7 +2,7 @@
   .submenu.column.is-4
     %aside.menu.box
       #aside-cart
-        = render @cart
+        = render @cart, current_item: nil
       = button_to 'カートを空にする', @cart, method: :delete, confirm: '本当によいですか？', class: "button is-secondary", remote: true
 
     %aside.menu.box

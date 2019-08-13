@@ -1,1 +1,1 @@
-document.getElementById("aside-cart").innerHTML = "<%= j render @cart %>"
+document.getElementById("aside-cart").innerHTML = "<%= j render @cart, current_item: @cart_item %>"
