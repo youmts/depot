@@ -1,7 +1,9 @@
 %main.columns
   .submenu.column.is-4
     %aside.menu.box
-      = render @cart
+      #aside-cart
+        = render @cart
+      = button_to 'カートを空にする', @cart, method: :delete, confirm: '本当によいですか？', class: "button is-secondary", remote: true
 
     %aside.menu.box
       %ul.menu-list
@@ -32,7 +34,7 @@
                 .field.is-size-4<
                   = number_to_currency(product.price)
               .column
-                = button_to 'Add to Cart', cart_items_path(product_id: product), class: "button is-primary"
+                = button_to 'Add to Cart', cart_items_path(product_id: product), class: "button is-primary", remote: true
             .is-hidden-mobile
               = product.description.truncate(200)
         %hr

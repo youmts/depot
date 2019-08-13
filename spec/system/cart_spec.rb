@@ -1,16 +1,23 @@
 require "rails_helper"
 
-RSpec.describe "Cart" do
+RSpec.describe "Cart", type: :system, js_headless: true do
   let!(:product) { create(:product) }
 
   example "Cartに商品を追加できること" do
     visit "/"
 
+    within("#aside-cart") { expect(page).not_to have_content product.title }
+
     expect {
       click_button "Add to Cart"
+
+      within("#aside-cart") do
+        expect(page).to have_content product.title
+        expect(page).to have_content "1 times;"
+      end
     }.to change(CartItem, :count).by(1)
 
-    expect(page).to have_current_path cart_path(Cart.last)
+    expect(page).to have_current_path "/"
 
     cart = Cart.last
     expect(cart.items.first.quantity).to eq 1
@@ -20,25 +27,35 @@ RSpec.describe "Cart" do
 
     expect {
       click_button "Add to Cart"
+
+      within("#aside-cart") do
+        expect(page).to have_content product.title
+        expect(page).to have_content "2 times;"
+      end
     }.to change { cart.items.first.quantity }.by(1)
 
-    expect(page).to have_current_path cart_path(Cart.last)
+    expect(page).to have_current_path "/"
   end
 
   example "Cartを空にできること" do
     visit "/"
 
+    # カートに商品を追加
     expect {
       click_button "Add to Cart"
-    }.to change(Cart, :count).by(1)
 
-    cart = Cart.last
+      within("#aside-cart") do
+        expect(page).to have_content product.title
+      end
+    }.to change(CartItem, :count).by(1)
 
-    visit cart_path(cart)
+    # カートを空にする
     expect {
       click_button "カートを空にする"
-    }.to change(Cart, :count).by(-1)
 
-    expect { visit cart_path(cart) }.to raise_error(ActiveRecord::RecordNotFound)
+      within("#aside-cart") do
+        expect(page).not_to have_content product.title
+      end
+    }.to change(CartItem, :count).by(-1)
   end
 end

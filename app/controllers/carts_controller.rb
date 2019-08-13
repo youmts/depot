@@ -42,10 +42,12 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   def destroy
     @cart = current_cart_or_create
-    @cart.destroy
-    session[:cart_id] = nil
+    @cart.items.clear
 
-    redirect_to store_url, notice: 'カートは現在空です'
+    respond_to do |format|
+      format.js { render "carts/reload" }
+      format.html { redirect_to store_url, notice: 'カートは現在空です' }
+    end
   end
 
   private

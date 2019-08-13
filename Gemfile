@@ -50,8 +50,9 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'capybara' # for system test
+  gem 'selenium-webdriver' # for use selenium driver
+  gem 'webdrivers' # for selenium_chrome_headless
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

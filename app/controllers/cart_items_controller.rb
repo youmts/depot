@@ -19,16 +19,16 @@ class CartItemsController < ApplicationController
   def edit
   end
 
-  # POST /cart_items
+  # POST /create
   def create
     @cart = current_cart_or_create
     product = Product.find(params[:product_id])
     @cart_item = @cart.add_product(product.id)
 
     if @cart_item.save
-      redirect_to @cart_item.cart, notice: 'Cart item was successfully created.'
+      render "carts/reload"
     else
-      render :new
+      redirect_to "/", flash: { error: "カートへの商品の追加に失敗しました" }
     end
   end
 
@@ -43,7 +43,7 @@ class CartItemsController < ApplicationController
 
   # DELETE /cart_items/1
   def destroy
-    @cart_item.destroy
+    @cart_item.destroy!
     redirect_to cart_items_url, notice: 'Cart item was successfully destroyed.'
   end
 
