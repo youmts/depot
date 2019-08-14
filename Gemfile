@@ -29,6 +29,8 @@ gem 'simple_form'
 gem 'carrierwave', '~> 1'
 gem 'rmagick'
 
+gem 'font-awesome-sass' # for cool icons
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

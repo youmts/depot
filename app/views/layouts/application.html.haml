@@ -18,7 +18,8 @@
           .navbar-end
             .navbar-item
               #navbar-cart
-                = link_to @cart.items.size, @cart
+                = render "carts/cart_icon", cart: @cart
+
     - else
       = yield :navbar
 
