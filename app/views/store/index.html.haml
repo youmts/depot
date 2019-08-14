@@ -1,7 +1,7 @@
 %main.columns
   .submenu.column.is-4
     #aside-cart
-      = render @cart, current_item: nil
+      = render "carts/aside_cart", cart: @cart, current_item: nil
 
     -# HACK boxの間にマージンを取る
     .box

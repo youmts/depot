@@ -37,7 +37,7 @@ RSpec.describe "Cart", type: :system, js_headless: true do
     expect(page).to have_current_path "/"
   end
 
-  example "Cartを空にできること" do
+  example "商品一覧でCartを空にできること" do
     visit "/"
 
     within(".submenu") { expect(page).not_to have_content product.title }
@@ -59,5 +59,34 @@ RSpec.describe "Cart", type: :system, js_headless: true do
         expect(page).not_to have_content product.title
       end
     }.to change(CartItem, :count).by(-1)
+  end
+
+  example "カート画面でCartを空にできること" do
+    visit "/"
+
+    within(".submenu") { expect(page).not_to have_content product.title }
+
+    # カートに商品を追加
+    expect {
+      click_button "Add to Cart"
+
+      within(".submenu") do
+        expect(page).to have_content product.title
+      end
+    }.to change(CartItem, :count).by(1)
+
+    cart = Cart.last
+
+    # カートを空にする
+    visit cart
+    expect {
+      click_button "カートを空にする"
+
+      within(".submenu") do
+        expect(page).not_to have_content product.title
+      end
+    }.to change(CartItem, :count).by(-1)
+
+    expect(page).to have_current_path store_path
   end
 end
