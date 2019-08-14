@@ -24,12 +24,12 @@
       - @products.each do |product|
         %li.columns
           .column.is-2
-            = link_to image_tag(product.image_url(:thumb)), product
+            = link_to image_tag(product.image_url(:thumb)), store_path(product.id)
           .column
             .columns.is-vcentered
               .column
                 .field.is-size-3
-                  = link_to product.title, product
+                  = link_to product.title, store_path(product.id)
               .column
                 .field.is-size-4<
                   = number_to_currency(product.price)

@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'store/index'
-
   resources :products
   resources :carts
   resources :cart_items
 
-  root to: 'store#index', as: 'store'
+  resources :store, only: [:index, :show]
+
+  root to: 'store#index'
 end

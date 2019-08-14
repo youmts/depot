@@ -18,7 +18,7 @@
           .navbar-end
             .navbar-item
               #navbar-cart
-                = render "carts/cart_icon", cart: @cart
+                = render "carts/cart_icon", cart: current_cart_or_create
 
     - else
       = yield :navbar
