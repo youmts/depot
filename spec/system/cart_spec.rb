@@ -6,12 +6,12 @@ RSpec.describe "Cart", type: :system, js_headless: true do
   example "Cartに商品を追加できること" do
     visit "/"
 
-    within("#aside-cart") { expect(page).not_to have_content product.title }
+    within(".submenu") { expect(page).not_to have_content product.title }
 
     expect {
       click_button "Add to Cart"
 
-      within("#aside-cart") do
+      within(".submenu") do
         expect(page).to have_content product.title
         expect(page).to have_content "1 times;"
       end
@@ -28,7 +28,7 @@ RSpec.describe "Cart", type: :system, js_headless: true do
     expect {
       click_button "Add to Cart"
 
-      within("#aside-cart") do
+      within(".submenu") do
         expect(page).to have_content product.title
         expect(page).to have_content "2 times;"
       end
@@ -40,11 +40,13 @@ RSpec.describe "Cart", type: :system, js_headless: true do
   example "Cartを空にできること" do
     visit "/"
 
+    within(".submenu") { expect(page).not_to have_content product.title }
+
     # カートに商品を追加
     expect {
       click_button "Add to Cart"
 
-      within("#aside-cart") do
+      within(".submenu") do
         expect(page).to have_content product.title
       end
     }.to change(CartItem, :count).by(1)
@@ -53,7 +55,7 @@ RSpec.describe "Cart", type: :system, js_headless: true do
     expect {
       click_button "カートを空にする"
 
-      within("#aside-cart") do
+      within(".submenu") do
         expect(page).not_to have_content product.title
       end
     }.to change(CartItem, :count).by(-1)

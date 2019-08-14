@@ -1,20 +1,20 @@
 %main.columns
   .submenu.column.is-4
-    %aside.menu.box
-      #aside-cart
-        = render @cart, current_item: nil
-      = button_to 'カートを空にする', @cart, method: :delete, confirm: '本当によいですか？', class: "button is-secondary", remote: true
+    #aside-cart
+      = render @cart, current_item: nil
 
-    %aside.menu.box
-      %ul.menu-list
-        %li
-          = link_to "ホーム", "/"
-        %li
-          = link_to "よくある質問", "/"
-        %li
-          = link_to "ニュース", "/"
-        %li
-          = link_to "お問い合わせ", "/"
+    -# HACK boxの間にマージンを取る
+    .box
+      %aside.menu
+        %ul.menu-list
+          %li
+            = link_to "ホーム", "/"
+          %li
+            = link_to "よくある質問", "/"
+          %li
+            = link_to "ニュース", "/"
+          %li
+            = link_to "お問い合わせ", "/"
   .column
     %h1.title Product Catalog
 
