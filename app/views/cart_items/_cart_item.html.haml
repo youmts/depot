@@ -1,4 +1,4 @@
-%tr{class: cart_item == current_item ? "is-selected" : nil}
+%tr{id: cart_item == current_item ? "current-item" : nil}
   %td
     = "#{cart_item.quantity} times;"
   %td

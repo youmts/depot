@@ -1,1 +1,10 @@
-document.getElementById("aside-cart").innerHTML = "<%= j render @cart, current_item: @cart_item %>"
+(function () {
+  document.getElementById("aside-cart").innerHTML = "<%= j render @cart, current_item: @cart_item %>";
+
+  // 変更があった行を強調表示する
+  // HACK アニメーションできるようにする
+  const current = document.getElementById("current-item");
+  const currentStyle = window.getComputedStyle(current);
+  current.style.backgroundColor = "#88ff88";
+  // current.animate({"background-color": ["#88ff88", currentStyle.backgroundColor]}, 1000);
+}());
