@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   extend Enumerize
 
-  has_many :items, -> { order "id" }, class_name: "OrderItem", foreign_key: :order_id, dependent: :destroy
+  has_many :items, -> { order "id" }, class_name: "OrderItem", foreign_key: :order_id, dependent: :destroy, inverse_of: :order
   accepts_nested_attributes_for :items
 
   validates :name, :address, :email, :pay_type, presence: true
