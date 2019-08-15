@@ -1,0 +1,11 @@
+- content_for :navbar do
+  %nav.navbar.is-light.is-fixed-top{ role: :navigation, aria: { label: "main navigation" } }
+    .navbar-brand
+      = link_to "PRAGMATIC BOOKSHELF", "/", class: "navbar-item is-size-4"
+    .navbar-menu
+      .navbar-end
+        .navbar-item
+          #navbar-cart
+            = render "carts/cart_icon", cart: current_cart_or_create
+
+= render template: 'layouts/application'
