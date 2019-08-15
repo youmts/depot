@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :orders
   # admin
   resources :products
 
@@ -7,6 +6,7 @@ Rails.application.routes.draw do
   resources :carts, only: [:show, :destroy]
   resources :cart_items, only: [:create]
   resources :store, only: [:index, :show]
+  resources :orders, only: [:new, :create]
 
   root to: 'store#index'
 end
