@@ -19,4 +19,4 @@
       - if flash[:error].presence
         .notification.is-danger
           = flash[:error]
-      = yield
+      = content_for?(:content) ? yield(:content) : yield

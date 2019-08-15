@@ -8,4 +8,27 @@
           #navbar-cart
             = render "carts/cart_icon", cart: current_cart_or_create
 
+- content_for :content do
+  %main.columns
+    .submenu.column.is-4
+      #aside-cart
+        = render "carts/aside_cart", cart: current_cart_or_create, current_item: nil
+
+      -# HACK boxの間にマージンを取る
+      .box
+        %aside.menu
+          %ul.menu-list
+            %li
+              = link_to "ホーム", "/"
+            %li
+              = link_to "よくある質問", "/"
+            %li
+              = link_to "ニュース", "/"
+            %li
+              = link_to "お問い合わせ", "/"
+
+    .column
+
+      = yield
+
 = render template: 'layouts/application'
