@@ -30,6 +30,7 @@ gem 'carrierwave', '~> 1'
 gem 'rmagick'
 
 gem 'font-awesome-sass' # for cool icons
+gem 'enumerize' # for enumerated attributes
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

@@ -2,4 +2,5 @@
   .box
     %aside.menu
       = render cart, current_item: current_item
+      = button_to "購入する", new_order_path, method: :get, class: "button is-primary"
       = button_to 'カートを空にする', @cart, method: :delete, confirm: '本当によいですか？', class: "button is-secondary", remote: true
