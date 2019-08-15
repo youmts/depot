@@ -28,9 +28,12 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
+    cart = current_cart_or_create
+    @order.add_items_from_cart(cart)
 
-    if @order.save
-      redirect_to @order, notice: 'Order was successfully created.'
+    if p(@order.save)
+      cart.items.clear
+      redirect_to store_index_url, notice: 'ご注文ありがとうございます'
     else
       render :new
     end
