@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  layout "user"
 
   def new
     @cart = current_cart_or_create
