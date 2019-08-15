@@ -78,7 +78,8 @@ RSpec.describe "Cart", type: :system, js_headless: true do
     cart = Cart.last
 
     # カートを空にする
-    visit cart
+    visit cart_path(cart)
+
     expect {
       click_button "カートを空にする"
 
@@ -87,6 +88,6 @@ RSpec.describe "Cart", type: :system, js_headless: true do
       end
     }.to change(CartItem, :count).by(-1)
 
-    expect(page).to have_current_path store_path
+    expect(page).to have_current_path store_index_path
   end
 end

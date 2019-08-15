@@ -46,7 +46,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       format.js { render "carts/reload" }
-      format.html { redirect_to store_url, notice: 'カートは現在空です' }
+      format.html { redirect_to store_index_url, notice: 'カートは現在空です' }
     end
   end
 
