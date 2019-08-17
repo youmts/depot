@@ -13,10 +13,11 @@
     = yield :navbar
 
     .container
-      - if notice.presence
-        .notification.is-success
-          = notice
-      - if flash[:error].presence
-        .notification.is-danger
-          = flash[:error]
+      #flash-messages
+        - if notice.presence
+          .notification.is-success
+            = notice
+        - if flash[:error].presence
+          .notification.is-danger
+            = flash[:error]
       = content_for?(:content) ? yield(:content) : yield
