@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     cart = current_cart_or_create
     @order.add_items_from_cart(cart)
 
-    if p(@order.save)
+    if @order.save
       cart.items.clear
       redirect_to store_index_url, notice: 'ご注文ありがとうございます'
     else
