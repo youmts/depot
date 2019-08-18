@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_18_032429) do
+ActiveRecord::Schema.define(version: 2019_08_18_212756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2019_08_18_032429) do
     t.string "pay_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "status", default: "payment_received", null: false
+    t.string "status", default: "pending_payment", null: false
     t.string "pay_jp_charge_id"
   end
 

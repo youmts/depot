@@ -7,7 +7,8 @@ class Order < ApplicationRecord
   validates :name, :address, :email, :pay_type, presence: true
   enumerize :pay_type, in: [:cash, :credit_card, :purchase_order]
   # TODO: default
-  enumerize :status, in: [:pending_payment, :payment_received], default: :pending_payment, predicates: true
+  enumerize :status, in: [:pending_payment, :payment_received],
+    default: :pending_payment, scope: true
 
   def add_items_from_cart(cart)
     cart.items.each do |cart_item|
