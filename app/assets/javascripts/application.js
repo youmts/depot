@@ -13,4 +13,60 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery
+//= require jquery_ujs
 //= require_tree .
+
+(function() {
+  // カード支払いページ用
+  $(document).on('turbolinks:load', function() {
+    console.log("load");
+    const form = $("#charge-form")
+    if (!form.length) {
+      return;
+    }
+
+    console.log(form);
+
+    const submit = form.find('input[name="commit"]');
+    submit.on("click", e => {
+      console.log("click");
+      e.preventDefault();
+
+      const number = form.find('input[name="number"]'),
+        cvc = form.find('input[name="cvc"]'),
+        exp_month = form.find('input[name="exp_month"]'),
+        exp_year = form.find('input[name="exp_year"]');
+
+      console.log(number);
+
+      const card = {
+        number: number.val(),
+        cvc: cvc.val(),
+        exp_month: exp_month.val(),
+        exp_year: exp_year.val()
+      };
+      console.log(card);
+
+      Payjp.createToken(card, function(s, response) {
+        if (response.error) {
+          form.find('.charge-errors').text(response.error.message);
+          console.log('error');
+          $.rails.enableFormElement(submit);
+        }
+        else {
+          number.val('');
+          cvc.val('');
+          exp_month.val('');
+          exp_year.val('');
+
+          const token = response.id;
+          console.log(token);
+
+          form.append($('<input type="hidden" name="payjp_token" />').val(token));
+          form.submit();
+        }
+      });
+    });
+  });
+})();

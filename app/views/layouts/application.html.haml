@@ -9,6 +9,9 @@
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'https://js.pay.jp/'
+    = javascript_tag do
+      Payjp.setPublicKey("#{ENV['PAYJP_API_PUBLIC']}");
   %body.has-navbar-fixed-top
     = yield :navbar
 
