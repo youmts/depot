@@ -60,4 +60,12 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include FactoryBot::Syntax::Methods
+
+  VCR.configure do |c|
+    c.cassette_library_dir = 'spec/vcr'
+    c.hook_into :webmock
+    c.ignore_localhost = true
+    c.allow_http_connections_when_no_cassette = false
+    c.configure_rspec_metadata!
+  end
 end

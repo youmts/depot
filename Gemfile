@@ -60,6 +60,8 @@ group :test do
   gem 'capybara' # for system test
   gem 'selenium-webdriver' # for use selenium driver
   gem 'webdrivers' # for selenium_chrome_headless
+  gem 'webmock' # for system test that use external web api
+  gem 'vcr' # for cache web api request for webmock
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
