@@ -4,20 +4,17 @@
 
 %ul
 - @products.each do |product|
-  %li.columns
-    .column.is-2
+  %li.row
+    .col-4
       = link_to image_tag(product.image_url(:thumb)), store_path(product.id)
-    .column
-      .columns.is-vcentered
-        .column
-          .field.is-size-3
-            = link_to product.title, store_path(product.id)
-        .column
-          .field.is-size-4<
-            = number_to_currency(product.price)
-        .column
-          = button_to 'Add to Cart', cart_items_path(product_id: product), class: "button is-primary", remote: true
-      .is-hidden-mobile
+    .col
+      .row
+        .col
+          = link_to product.title, store_path(product.id)
+        .col
+          = number_to_currency(product.price)
+        .col
+          = button_to 'Add to Cart', cart_items_path(product_id: product), class: "btn btn-primary", remote: true
         = product.description.truncate(200)
   %hr
 
