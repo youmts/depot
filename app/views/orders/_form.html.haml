@@ -1,4 +1,4 @@
-= simple_form_for @order, wrapper: :default, defaults: { wrapper: false } do |f|
+= simple_form_for @order do |f|
   - if f.error_notification.presence
     .notification.is-warning
       = f.error_notification
@@ -7,4 +7,4 @@
   = f.input :address
   = f.input :email
   = f.input :pay_type, prompt: "お支払い方法を選択してください"
-  = f.button :submit, class: "button is-primary"
+  = f.button :submit, class: "btn btn-primary"
