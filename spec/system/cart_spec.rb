@@ -53,7 +53,7 @@ RSpec.describe "Cart", type: :system, js_headless: true do
 
     # カートを空にする
     expect {
-      click_button "カートを空にする"
+      click_button "Empty Cart"
 
       within("#aside-cart", visible: false) do
         expect(page).not_to have_content product.title

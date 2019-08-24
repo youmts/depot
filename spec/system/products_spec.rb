@@ -27,7 +27,7 @@ RSpec.describe 'Products', type: :system do
       click_button "commit"
     }.to change(Product, :count).by(1)
 
-    expect(page).to have_current_path product_path(Product.last)
+    expect(page).to have_current_path product_path(Product.last), ignore_query: true
   end
 
   example "商品を編集できること" do
@@ -36,7 +36,7 @@ RSpec.describe 'Products', type: :system do
 
     click_button "commit"
 
-    expect(page).to have_current_path product_path product
+    expect(page).to have_current_path product_path(product), ignore_query: true
     expect(page).to have_content "new_title"
   end
 

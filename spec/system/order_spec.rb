@@ -18,14 +18,14 @@ RSpec.describe "Order", type: :system, js_headless:true do
 
   context "現金の場合" do
     example "注文できること" do
-      click_button "購入する"
+      click_button "Checkout"
 
       fill_in "Name", with: "name"
       fill_in "Address", with: "address"
       fill_in "Email", with: "mail@example.com"
       select "Cash", from: "order_pay_type"
 
-      click_button "Create Order"
+      click_button "Place Order"
 
       expect(page).to have_content"ご注文ありがとうございます"
     end
@@ -33,14 +33,14 @@ RSpec.describe "Order", type: :system, js_headless:true do
 
   context "注文書の場合" do
     example "注文できること" do
-      click_button "購入する"
+      click_button "Checkout"
 
       fill_in "Name", with: "name"
       fill_in "Address", with: "address"
       fill_in "Email", with: "mail@example.com"
       select "Purchase order", from: "order_pay_type"
 
-      click_button "Create Order"
+      click_button "Place Order"
 
       expect(page).to have_content"ご注文ありがとうございます"
     end
@@ -48,21 +48,21 @@ RSpec.describe "Order", type: :system, js_headless:true do
 
   context "クレジットカードの場合", vcr: true do
     example "注文できること" do
-      click_button "購入する"
+      click_button "Checkout"
 
       fill_in "Name", with: "name"
       fill_in "Address", with: "address"
       fill_in "Email", with: "mail@example.com"
       select "Credit card", from: "order_pay_type"
 
-      click_button "Create Order"
+      click_button "Place Order"
 
       fill_in "number", with: "4242424242424242"
       fill_in "cvc", with: "123"
       fill_in "exp_month", with: "03"
       fill_in "exp_year", with: "2099"
 
-      click_button "支払う"
+      click_button "Pay"
 
       expect(page).to have_content"ご注文ありがとうございます"
     end
