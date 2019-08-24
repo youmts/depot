@@ -32,6 +32,13 @@ ja:
     form:
       pay_prompt: "選択してください"
       submit: "注文する"
+    credit_card_form:
+      legend: "クレジットカード情報を入力してください"
+      number: "カード番号"
+      expiration: "有効期限"
+      year: "年"
+      month: "月"
+      submit: "支払う"
 
   activerecord:
     errors:

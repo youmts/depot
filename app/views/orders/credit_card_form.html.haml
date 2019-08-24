@@ -1,24 +1,25 @@
 %fieldset
-  %legend
-    クレジットカード情報を入力してください
+  %legend= t('.legend')
+
 
   = form_tag pay_credit_card_order_path(@order), id: "charge-form" do
     .charge-errors
 
     .form-group
-      %label{for: "number"} カード番号
-      = text_field_tag "number", nil, placeholder: "カード番号", maxlength: 16, class: "form-control"
+      %label{for: "number"}= t('.number')
+      = text_field_tag "number", nil, placeholder: t('.number'), maxlength: 16, class: "form-control"
 
     .form-group
-      %label{for: "cvc"} CVC
+      %label{for: "cvc"}
+        CVC
       = text_field_tag "cvc", nil, placeholder: "CVC", maxlength: 3, class: "form-control"
 
     .form-group
-      %label{for: "exp_month"} 有効期限
+      %label{for: "exp_month"}= t('.expiration')
       .form-row
         .col-auto
-          = text_field_tag "exp_month", nil, placeholder: "月", maxlength: 2, class: "form-control"
+          = text_field_tag "exp_month", nil, placeholder: t('.month'), maxlength: 2, class: "form-control"
         .col-auto
-          = text_field_tag "exp_year", nil, placeholder: "年", maxlength: 4, class: "form-control"
+          = text_field_tag "exp_year", nil, placeholder: t('.year'), maxlength: 4, class: "form-control"
 
-    = submit_tag "支払う", class: "btn btn-primary"
+    = submit_tag t('.submit'), class: "btn btn-primary"

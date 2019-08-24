@@ -33,6 +33,10 @@ en:
     form:
       pay_prompt: "Please select"
       submit: "Place Order"
-
-    attributes:
-      order:
+    credit_card_form:
+      legend: "Please Enter Credit Card Information"
+      number: "Number"
+      expiration: "Expiration"
+      year: "Year"
+      month: "Month"
+      submit: "Pay"
