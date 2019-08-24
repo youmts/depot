@@ -1,10 +1,10 @@
-= simple_form_for @product, wrapper: :default, defaults: { wrapper: false } do |f|
+= simple_form_for @product do |f|
   - if f.error_notification.presence
-    .notification.is-warning
+    .alert.alert-danger
       = f.error_notification
 
   = f.input :title, placeholder: "Input title here..."
   = f.input :description, placeholder: "Input description here...", html: { rows: "10" }
   = f.input :image, as: :file
   = f.input :price, placeholder: "Input price here..."
-  = f.button :submit, class: "button is-primary"
+  = f.button :submit, class: "btn btn-primary"

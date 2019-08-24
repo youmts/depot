@@ -52,7 +52,9 @@
 
       Payjp.createToken(card, function(s, response) {
         if (response.error) {
-          form.find('.charge-errors').text(response.error.message);
+          const errors = form.find('.charge-errors');
+          errors.text(response.error.message);
+          errors.addClass("alert alert-danger")
           console.log('error');
           $.rails.enableFormElement(submit);
         }

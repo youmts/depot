@@ -1,6 +1,6 @@
 = simple_form_for @order do |f|
   - if f.error_notification.presence
-    .notification.is-warning
+    .alert.alert-danger
       = f.error_notification
 
   = f.input :name

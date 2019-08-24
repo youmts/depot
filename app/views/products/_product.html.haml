@@ -1,11 +1,13 @@
 %h1.title
   = @product.title
 
-= image_tag @product.image_url, size: "320x240", class: "box"
+= image_tag @product.image_url, size: "400"
 
-.content
-  %b Price:
-  = @product.price
+%br
 
-.content
-  = simple_format h @product.description
+%b Price:
+= @product.price
+
+%hr
+
+= simple_format h @product.description
