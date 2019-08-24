@@ -8,7 +8,7 @@ RSpec.describe "Order", type: :system, js_headless:true do
 
     click_button "Add to Cart"
 
-    within(".submenu") do
+    within("#aside-cart") do
       expect(page).to have_content product.title
       expect(page).to have_content "1 times;"
     end
