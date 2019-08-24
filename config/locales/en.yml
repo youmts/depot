@@ -6,3 +6,8 @@ en:
       questions: "Questions"
       news: "News"
       contact: "Contact"
+
+  store:
+    index:
+      title: "Your Pragmatic Catalog"
+      add: "Add to Cart"

@@ -6,3 +6,8 @@ ja:
       questions: "よくある質問"
       news: "ニュース"
       contact: "お問い合わせ"
+
+  store:
+    index:
+      title: "カタログ"
+      add: "カートに入れる"

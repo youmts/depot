@@ -1,4 +1,4 @@
-%h1.title Product Catalog
+%h1.title= t('.title')
 
 %hr
 
@@ -14,7 +14,7 @@
         .col
           = number_to_currency(product.price)
         .col
-          = button_to 'Add to Cart', cart_items_path(product_id: product), class: "btn btn-primary", remote: true
+          = button_to t('.add'), cart_items_path(product_id: product), class: "btn btn-primary", remote: true
         = product.description.truncate(200)
   %hr
 
