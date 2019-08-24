@@ -18,6 +18,7 @@
     .container
       #flash-messages
         - if notice.presence
+          -# TODO fixme
           .notification.is-success
             = notice
         - if flash[:error].presence

@@ -1,33 +1,27 @@
 - content_for :navbar do
-  %nav.navbar.is-light.is-fixed-top{ role: :navigation, aria: { label: "main navigation" } }
-    .navbar-brand
-      = link_to "PRAGMATIC BOOKSHELF", "/", class: "navbar-item is-size-4"
-    .navbar-menu
-      .navbar-end
-        .navbar-item
-          #navbar-cart
-            = render "carts/cart_icon", cart: current_cart_or_create
+  %nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+    = link_to "PRAGMATIC BOOKSHELF", "/", class: "navbar-brand"
 
 - content_for :content do
-  %main.columns
-    .submenu.column.is-4
+  %main.row
+    .col-sm-4
       #aside-cart
         = render "carts/aside_cart", cart: current_cart_or_create, current_item: nil
 
       -# HACK boxの間にマージンを取る
-      .box
-        %aside.menu
-          %ul.menu-list
-            %li
+      .border.rounded.mt-1
+        %aside
+          %ul.list-group
+            %li.list-group-item
               = link_to "ホーム", "/"
-            %li
+            %li.list-group-item
               = link_to "よくある質問", "/"
-            %li
+            %li.list-group-item
               = link_to "ニュース", "/"
-            %li
+            %li.list-group-item
               = link_to "お問い合わせ", "/"
 
-    .column
+    .col-sm
 
       = yield
 

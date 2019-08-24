@@ -1,7 +1,6 @@
 - content_for :navbar do
-  %nav.navbar.is-danger.is-fixed-top{ role: :navigation, aria: { label: "main navigation" } }
+  %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
     .navbar-brand
-      .navbar-item.is-size-4
-        ADMIN PAGE
+      ADMIN PAGE
 
 = render template: 'layouts/application'
