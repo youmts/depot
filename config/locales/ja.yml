@@ -25,3 +25,27 @@ ja:
         precision: 0
         delimiter: ","
         format: "%n&nbsp;%u"
+
+  orders:
+    new:
+      legend: "お客様の情報を入力してください"
+    form:
+      pay_prompt: "選択してください"
+      submit: "注文する"
+
+  activerecord:
+    errors:
+      messages:
+        blank: "を入力してください"
+
+    attributes:
+      order:
+        name: "お名前"
+        address: "ご住所"
+        email: "メールアドレス"
+        pay_type: "お支払い方法"
+
+  errors:
+    template:
+      body: "入力エラーを修正してください"
+

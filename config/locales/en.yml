@@ -26,3 +26,13 @@ en:
         separator: "."
         delimiter: ","
         format: "%u%n"
+
+  orders:
+    new:
+      legend: "Please Enter Your Details"
+    form:
+      pay_prompt: "Please select"
+      submit: "Place Order"
+
+    attributes:
+      order:
