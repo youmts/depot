@@ -21,7 +21,7 @@ gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 
-gem 'bulma-rails'
+gem 'bootstrap'
 
 gem 'haml-rails'
 gem 'simple_form'
@@ -35,7 +35,7 @@ gem 'enumerize' # for enumerated attributes
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'jquery-rails' # for pay.jp client side code
+gem 'jquery-rails' # for pay.jp client side code and bootstrap
 gem 'payjp' # for credit-card payment
 
 group :development, :test do
