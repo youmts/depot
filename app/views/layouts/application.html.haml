@@ -18,7 +18,9 @@
     .container
       #flash-messages
         - if notice.presence
-          = notice
+          .alert.alert-warning
+            = notice
         - if flash[:error].presence
-          = flash[:error]
+          .alert.alert-danger
+            = flash[:error]
       = content_for?(:content) ? yield(:content) : yield

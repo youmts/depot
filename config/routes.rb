@@ -3,15 +3,17 @@ Rails.application.routes.draw do
   resources :products
 
   # user
-  resources :carts, only: [:show, :destroy]
-  resources :cart_items, only: [:create]
-  resources :store, only: [:index, :show]
-  resources :orders, only: [:new, :create] do
-    member do
-      get 'credit_card_form'
-      post 'pay_credit_card'
+  scope '(:locale)' do
+    resources :carts, only: [:show, :destroy]
+    resources :cart_items, only: [:create]
+    resources :store, only: [:index, :show]
+    resources :orders, only: [:new, :create] do
+      member do
+        get 'credit_card_form'
+        post 'pay_credit_card'
+      end
     end
-  end
 
-  root to: 'store#index'
+    root to: 'store#index'
+  end
 end
