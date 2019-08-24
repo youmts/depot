@@ -60,34 +60,4 @@ RSpec.describe "Cart", type: :system, js_headless: true do
       end
     }.to change(CartItem, :count).by(-1)
   end
-
-  example "カート画面でCartを空にできること" do
-    visit "/"
-
-    within("#aside-cart") { expect(page).not_to have_content product.title }
-
-    # カートに商品を追加
-    expect {
-      click_button "Add to Cart"
-
-      within("#aside-cart") do
-        expect(page).to have_content product.title
-      end
-    }.to change(CartItem, :count).by(1)
-
-    cart = Cart.last
-
-    # カートを空にする
-    visit cart_path(cart)
-
-    expect {
-      click_button "カートを空にする"
-
-      within("#aside-cart") do
-        expect(page).not_to have_content product.title
-      end
-    }.to change(CartItem, :count).by(-1)
-
-    expect(page).to have_current_path store_index_path
-  end
 end
