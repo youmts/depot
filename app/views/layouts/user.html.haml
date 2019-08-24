@@ -1,6 +1,6 @@
 - content_for :navbar do
   %nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-    = link_to "PRAGMATIC BOOKSHELF", "/", class: "navbar-brand"
+    = link_to t('.title'), "/", class: "navbar-brand"
 
 - content_for :content do
   %main.row
@@ -13,13 +13,13 @@
         %aside
           %ul.list-group
             %li.list-group-item
-              = link_to "ホーム", "/"
+              = link_to t('.home'), "/"
             %li.list-group-item
-              = link_to "よくある質問", "/"
+              = link_to t('.questions'), "/"
             %li.list-group-item
-              = link_to "ニュース", "/"
+              = link_to t('.news'), "/"
             %li.list-group-item
-              = link_to "お問い合わせ", "/"
+              = link_to t('.contact'), "/"
 
     .col-sm
 
