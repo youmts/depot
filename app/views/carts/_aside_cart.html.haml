@@ -1,6 +1,0 @@
-- if cart.items.present?
-  .border.rounded.mt-1
-    %aside
-      = render cart, current_item: current_item
-      = button_to "購入する", new_order_path, method: :get, class: "btn btn-primary"
-      = button_to 'カートを空にする', @cart, method: :delete, confirm: '本当によいですか？', class: "btn btn-secondary mt-1", remote: true

@@ -1,11 +1,16 @@
-%h3.title カートの商品
+- if cart.items.present?
+  .border.rounded.mt-1
+    %aside
+      %h3.title= t('.title')
 
-.content
-  %table.table.table-striped
-    = render cart.items, current_item: current_item
+      .content
+        %table.table.table-striped
+          = render cart.items, current_item: current_item
 
     %tr
       %td{ colspan: 2 } 合計
       %td.has-text-right
         = number_to_currency(cart.total_price)
+      = button_to t(".checkout"), new_order_path, method: :get, class: "btn btn-primary"
+      = button_to t(".destroy"), @cart, method: :delete, confirm: '本当によいですか？', class: "btn btn-secondary mt-1", remote: true
 

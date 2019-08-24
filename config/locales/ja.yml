@@ -11,3 +11,17 @@ ja:
     index:
       title: "カタログ"
       add: "カートに入れる"
+
+  carts:
+    cart:
+      title: "カート"
+      checkout: "購入する"
+      destroy: "カートを空にする"
+
+  number:
+    currency:
+      format:
+        unit: "円"
+        precision: 0
+        delimiter: ","
+        format: "%n&nbsp;%u"

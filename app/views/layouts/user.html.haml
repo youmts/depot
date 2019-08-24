@@ -6,7 +6,7 @@
   %main.row
     .col-lg-4
       #aside-cart
-        = render "carts/aside_cart", cart: current_cart_or_create, current_item: nil
+        = render current_cart_or_create, current_item: nil
 
       -# HACK boxの間にマージンを取る
       .border.rounded.mt-1

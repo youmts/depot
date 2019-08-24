@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # user
   scope '(:locale)' do
-    resources :carts, only: [:show, :destroy]
+    resources :carts, only: [:destroy]
     resources :cart_items, only: [:create]
     resources :store, only: [:index, :show]
     resources :orders, only: [:new, :create] do

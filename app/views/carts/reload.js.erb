@@ -1,6 +1,6 @@
 (function () {
   document.getElementById("flash-messages").style.display = "none"
-  document.getElementById("aside-cart").innerHTML = "<%= j render "carts/aside_cart", cart: @cart, current_item: @cart_item %>";
+  document.getElementById("aside-cart").innerHTML = "<%= j render @cart, current_item: @cart_item %>";
   document.getElementById("navbar-cart").innerHTML = "<%= j render "carts/cart_icon", cart: @cart %>";
 
   // 変更があった行を強調表示する

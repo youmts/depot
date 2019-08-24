@@ -11,3 +11,18 @@ en:
     index:
       title: "Your Pragmatic Catalog"
       add: "Add to Cart"
+
+  carts:
+    cart:
+      title: "Your Cart"
+      checkout: "Checkout"
+      destroy: "Empty Cart"
+
+  number:
+    currency:
+      format:
+        unit: "$"
+        precision: 2
+        separator: "."
+        delimiter: ","
+        format: "%u%n"
