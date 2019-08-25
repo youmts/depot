@@ -2,8 +2,12 @@ class StoreController < ApplicationController
   layout 'user'
 
   def index
-    @products = Product.order(:title)
-    @cart = current_cart_or_create
+    if params[:set_locale]
+      redirect_to store_index_path(locale: params[:set_locale])
+    else
+      @products = Product.order(:title)
+      @cart = current_cart_or_create
+    end
   end
 
   def show

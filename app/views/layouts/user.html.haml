@@ -1,6 +1,13 @@
 - content_for :navbar do
   %nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-    = link_to t('.title'), root_path, class: "navbar-brand"
+    = link_to t('.title'), root_path, class: "navbar-brand mr-auto"
+
+    = form_tag store_index_path, class: "form-inline", method: :get do
+      = select_tag 'set_locale',
+        options_for_select(LANGUAGES, I18n.locale.to_s),
+        onchange: 'this.form.submit()',
+        class: "form-control"
+      = submit_tag 'submit', style: "display: none;"
 
 - content_for :content do
   %main.row
