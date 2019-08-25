@@ -11,6 +11,8 @@ ja:
     index:
       title: "カタログ"
       add: "カートに入れる"
+    show:
+      add: "カートに入れる"
 
   carts:
     cart:
