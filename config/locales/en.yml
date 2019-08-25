@@ -40,3 +40,6 @@ en:
       year: "Year"
       month: "Month"
       submit: "Pay"
+
+  thanks: "Thank you for your order"
+  thanks_creditcard: "Thank you for your order(credit card paid)"

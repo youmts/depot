@@ -82,3 +82,6 @@ ja:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
+
+  thanks: "ご注文ありがとうございます"
+  thanks_creditcard: "ご注文ありがとうございます（クレジットカード支払い済み）"

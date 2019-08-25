@@ -27,7 +27,7 @@ RSpec.describe "Order", type: :system, js_headless:true do
 
       click_button "Place Order"
 
-      expect(page).to have_content"ご注文ありがとうございます"
+      expect(page).to have_content /thank you/i
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.describe "Order", type: :system, js_headless:true do
 
       click_button "Place Order"
 
-      expect(page).to have_content"ご注文ありがとうございます"
+      expect(page).to have_content /thank you/i
     end
   end
 
@@ -64,7 +64,7 @@ RSpec.describe "Order", type: :system, js_headless:true do
 
       click_button "Pay"
 
-      expect(page).to have_content"ご注文ありがとうございます"
+      expect(page).to have_content /thank you/i
     end
   end
 end

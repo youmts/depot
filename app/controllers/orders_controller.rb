@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
       if @order.pay_type == :credit_card
         redirect_to credit_card_form_order_url(@order)
       else
-        redirect_to store_index_url, notice: 'ご注文ありがとうございます'
+        redirect_to store_index_url, notice: I18n.t('.thanks')
       end
     else
       render :new
@@ -58,7 +58,7 @@ class OrdersController < ApplicationController
       logger.info "Payjp::Charge#capture : #{charge.id}"
     end
 
-    redirect_to store_index_url, notice: 'ご注文ありがとうございます（クレジットカード支払い済み）'
+    redirect_to store_index_url, notice: I18n.t(".thanks_creditcard")
 
   rescue
     # 確保した支払い額を返金
