@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Cart", type: :system, js_headless: true do
+RSpec.describe "Cart", type: :system, js: true do
   let!(:product) { create(:product) }
 
   example "Cartに商品を追加できること" do

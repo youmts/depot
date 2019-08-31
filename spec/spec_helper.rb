@@ -93,15 +93,4 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-  config.before(:each) do |example|
-    if example.metadata[:type] == :system
-      if example.metadata[:js_headless]
-        # :jsだとどうしてもheadlessモードにならないので・・・独自のmetadataを使うことにする
-        driven_by :selenium_chrome_headless, screen_size: [1400, 1400]
-      else
-        # jsを使用しない場合は、高速なrack_testを使う
-        driven_by :rack_test
-      end
-    end
-  end
 end

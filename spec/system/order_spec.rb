@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Order", type: :system, js_headless:true do
+RSpec.describe "Order", type: :system, js:true do
   let!(:product) { create(:product) }
 
   before do
