@@ -39,7 +39,7 @@ gem 'activeadmin'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'jquery-rails' # for pay.jp client side code and bootstrap
-gem 'payjp' # for credit-card payment
+gem 'stripe' # for credit-card payment
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

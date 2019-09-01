@@ -22,4 +22,9 @@ class Order < ApplicationRecord
   def total_price
     items.sum { |i| i.total_price }
   end
+
+  def joined_product_titles
+    products = items.pluck(:product_id)
+    Product.find(products).pluck(:title).join("/")
+  end
 end

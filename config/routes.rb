@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create] do
       member do
         get 'credit_card_form'
-        post 'pay_credit_card'
+        get 'pay_success'
+        get 'pay_cancel'
       end
     end
 

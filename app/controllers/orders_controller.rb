@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   layout "user"
 
-  before_action :set_order_pending_peyment, only: [:credit_card_form, :pay_credit_card]
+  before_action :set_order, only: [:credit_card_form, :pay_success, :pay_cancel]
 
   def new
     @cart = current_cart_or_create
@@ -31,49 +31,32 @@ class OrdersController < ApplicationController
   end
 
   def credit_card_form
+    @stripe_session = Stripe::Checkout::Session.create(
+      payment_method_types: ['card'],
+      line_items: [{
+        name: 'depot',
+        description: @order.joined_product_titles,
+        amount: @order.total_price.to_i,
+        currency: 'jpy',
+        quantity: 1,
+      }],
+      success_url: pay_success_order_url(@order),
+      cancel_url: pay_cancel_order_url(@order),
+    )
   end
 
-  def pay_credit_card
-    Payjp::api_key = ENV['PAYJP_API_SECRET']
-
-    payjp_input = {
-      amount: @order.total_price.to_i,
-      card: params[:payjp_token],
-      currency: 'jpy',
-      capture: false,
-      expiry_days: 1,
-    }
-    charge = nil
-
-    @order.transaction do
-      # 認証と支払額の確保
-      charge = Payjp::Charge.create(payjp_input)
-      logger.info "Payjp::Charge.create : #{payjp_input} => #{charge.id}"
-
-      # 保存処理
-      @order.update! status: :payment_received, pay_jp_charge_id: charge.id
-
-      # 支払い処理を確定
-      charge.capture
-      logger.info "Payjp::Charge#capture : #{charge.id}"
-    end
-
+  def pay_success
     redirect_to store_index_url, notice: I18n.t(".thanks_creditcard")
+  end
 
-  rescue
-    # 確保した支払い額を返金
-    if charge
-      charge.refund
-      logger.info "Payjp::Charge#retrieve : #{charge.id}"
-    end
-    raise
+  def pay_cancel
+
+    redirect_to store_index_url, notice: I18n.t(".cancel_creditcard")
   end
 
   private
 
-    def set_order_pending_peyment
-      # TODO そのセッションで持っているOrderかどうかチェックする
-      # TODO .where(status: :pending_payment)
+    def set_order
       @order = Order.find(params[:id])
     end
 
