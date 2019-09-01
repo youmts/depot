@@ -14,6 +14,9 @@ Rails.application.routes.draw do
         get 'credit_card_form'
         post 'pay_credit_card'
       end
+      collection do
+        get 'pay_success'
+      end
     end
 
     root to: 'store#index'
