@@ -29,5 +29,6 @@
 /.idea/*
 
 /public/uploads/**
+*.backup
 .env
 /spec/vcr/**

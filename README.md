@@ -4,8 +4,8 @@
 ルートに.envファイルを置き、PAY.JPのキーを次のように記述しておくこと。
 
 ```ruby:.env
-STRIPE_API_PUBLIC=pk_test_your_pay_jp_account
-STRIPE_API_SECRET=sk_test_your_pay_jp_account
+PAYJP_API_PUBLIC=pk_test_your_pay_jp
+PAYJP_API_SECRET=sk_test_your_pay_jp
 ```
 
 Rspecを動かすと初回実行時にPAY.JPへの問い合わせがVCRによって保存され、二回目以降はモック化される。
