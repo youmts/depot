@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_31_063042) do
+ActiveRecord::Schema.define(version: 2019_09_11_052508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_08_31_063042) do
     t.bigint "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "quantity", default: 1
+    t.integer "quantity", null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 2019_08_31_063042) do
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "product_id"
-    t.integer "quantity"
-    t.decimal "total_price"
+    t.integer "quantity", null: false
+    t.decimal "total_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -68,10 +68,10 @@ ActiveRecord::Schema.define(version: 2019_08_31_063042) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "name"
-    t.text "address"
-    t.string "email"
-    t.string "pay_type"
+    t.string "name", null: false
+    t.text "address", null: false
+    t.string "email", null: false
+    t.string "pay_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status", default: "pending_payment", null: false
@@ -79,10 +79,10 @@ ActiveRecord::Schema.define(version: 2019_08_31_063042) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
+    t.string "title", null: false
+    t.text "description", null: false
     t.text "image"
-    t.decimal "price"
+    t.decimal "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
