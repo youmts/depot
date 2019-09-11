@@ -21,7 +21,8 @@ class OrdersController < ApplicationController
     if @order.save
       cart.items.clear
       if @order.pay_type == :credit_card
-        redirect_to credit_card_form_order_url(@order)
+        session[:order_id] = @order.id
+        redirect_to credit_card_form_orders_url
       else
         redirect_to store_index_url, notice: I18n.t('.thanks')
       end
@@ -72,9 +73,7 @@ class OrdersController < ApplicationController
   private
 
     def set_order_pending_peyment
-      # TODO そのセッションで持っているOrderかどうかチェックする
-      # TODO .where(status: :pending_payment)
-      @order = Order.find(params[:id])
+      @order = Order.find_by(id: session[:order_id], status: :pending_payment)
     end
 
     # Only allow a trusted parameter "white list" through.
