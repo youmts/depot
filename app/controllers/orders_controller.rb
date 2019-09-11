@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   layout "user"
 
-  before_action :set_order_pending_peyment, only: [:credit_card_form, :pay_credit_card]
+  before_action :set_order_pending_payment, only: [:credit_card_form, :pay_credit_card]
 
   def new
     @cart = current_cart_or_create
@@ -72,7 +72,7 @@ class OrdersController < ApplicationController
 
   private
 
-    def set_order_pending_peyment
+    def set_order_pending_payment
       @order = Order.find_by(id: session[:order_id], status: :pending_payment)
     end
 
