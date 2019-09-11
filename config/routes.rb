@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  root to: 'store#index'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  # admin
-  resources :products
 
   # user
   scope '(:locale)' do
@@ -15,7 +15,5 @@ Rails.application.routes.draw do
         post 'pay_credit_card'
       end
     end
-
-    root to: 'store#index'
   end
 end
