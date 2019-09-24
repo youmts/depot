@@ -1,8 +1,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+# .ruby-version に書いているのでGemfileに記述しなくてもよい？
+# .ruby-versionはrbenv local 2.6.3 としたときに生成されるファイル（要確認）
+# 2.6.3 の部分がずれるとbundle installでエラーになる。
 ruby '2.6.3'
 
+# 不要なコメントは削除してスッキリさせたい
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use postgresql as the database for Active Record
@@ -25,6 +29,8 @@ gem 'haml-rails'
 gem 'simple_form'
 
 gem 'carrierwave', '~> 1'
+
+# minimagick のほうがメンテがされていてよさそう
 gem 'rmagick'
 
 gem 'font-awesome-sass' # for cool icons
@@ -36,6 +42,7 @@ gem 'activeadmin'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# bootstrapと一緒にはいるかも？↓必要
 gem 'jquery-rails' # for pay.jp client side code and bootstrap
 gem 'payjp' # for credit-card payment
 

@@ -49,8 +49,14 @@ ActiveRecord::Schema.define(version: 2019_09_11_052508) do
     t.integer "quantity", null: false
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["product_id"], name: "index_cart_items_on_product_id"
+    # unique制約つけると変なデータが入り込まないのでよいが、適度につかわないとindexが増えすぎるのも。。。
+    t.index ["cart_id", "product_id"], name: "index_cart_items_on_cart_id_and_product_id", unique: true
   end
 
+  # カートは session に紐づいているので、セッションが切れると消える
+  # 今後ユーザーを追加するときのために、localStorageなどに一時記憶させるとか。
+  # localStorageをつかってしまうと、アプリ側からの制御がしづらくなるかも。。。
+  # [https://railsguides.jp/caching_with_rails.html Rails のキャッシュ機構 - Rails ガイド]
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,7 +65,12 @@ ActiveRecord::Schema.define(version: 2019_09_11_052508) do
   create_table "order_items", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "product_id"
+    # default: 0 はあえて書かず、テストで検証しやすくしている
+    # migration のときに default を指定していた方がよいのかも
     t.integer "quantity", null: false
+    # ドルの単位だから decimal になってる
+    # 日本円のみであれば integer になる
+    # 端数処理のため、単価ではなく、合計金額をつかっている
     t.decimal "total_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -74,8 +85,11 @@ ActiveRecord::Schema.define(version: 2019_09_11_052508) do
     t.string "pay_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    # t.integer にすると、セレクトボックスなどをつかうときにRailsだと使いづらい？
+    # enumerize gem をつかってストレートに使えるようにする目的もある
     t.string "status", default: "pending_payment", null: false
     t.string "pay_jp_charge_id"
+  #   order_itemsにあるので、ここにも total_price がほしくなる
   end
 
   create_table "products", force: :cascade do |t|
@@ -89,4 +103,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_052508) do
 
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
+
+  #   order_items の外部キーもいるのでは
+  #   add_foreign_key "order_items", "orders"
+  #   add_foreign_key "order_items", "products"
 end
