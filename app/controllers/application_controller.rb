@@ -20,6 +20,10 @@ class ApplicationController < ActionController::Base
     end
 
     def current_cart_or_create
+      # こう書けそう
+      # cart = Cart.find_or_create_by!(id: session[:cart_id])
+      # session[:cart_id] = cart.id
+
       Cart.find(session[:cart_id])
     rescue ActiveRecord::RecordNotFound
       cart = Cart.create
