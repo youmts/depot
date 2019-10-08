@@ -1,0 +1,13 @@
+%h1.title
+  = @product.title
+
+= image_tag @product.image_url, size: "400"
+
+%br
+
+%b Price:
+= @product.price
+
+%hr
+
+= simple_format h @product.description
