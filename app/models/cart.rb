@@ -1,5 +1,9 @@
 class Cart < ApplicationRecord
-  has_many :items, -> { order "id" }, class_name: "CartItem", foreign_key: :cart_id, dependent: :destroy
+  has_many :items,
+           -> { order "id" },
+           class_name: "CartItem",
+           foreign_key: :cart_id,
+           dependent: :destroy
 
   def add_product(product_id)
     current_item = items.find_by_product_id(product_id)

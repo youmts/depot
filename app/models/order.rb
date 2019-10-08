@@ -10,8 +10,10 @@ class Order < ApplicationRecord
   enumerize :status, in: [:pending_payment, :payment_received],
     default: :pending_payment, scope: true
 
-  def add_items_from_cart(cart)
-    cart.items.each do |cart_item|
+
+  def add_items_from_cart(cart_items)
+    # cart_itemはitemにしたいが、OrderItemのitemと区別するためにあえてcart_itemとしている
+    cart_items.each do |cart_item|
       items.build(
         product: cart_item.product,
         quantity: cart_item.quantity,
