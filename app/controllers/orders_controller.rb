@@ -10,8 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.add_items_from_cart(@cart)
+    @order = Order.new(order_params.merge(items: @cart.items.map{ |item| OrderItem.from_cart_item(item) }))
 
     if @order.save
       @cart.items.clear
