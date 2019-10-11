@@ -1,25 +1,19 @@
 class OrdersController < ApplicationController
   layout "user"
 
-  before_action :set_order_pending_payment, only: [:credit_card_form, :pay_credit_card]
+  before_action :set_order_pending_payment, only: %i[credit_card_form pay_credit_card]
+  before_action :set_cart, only: %i[new create]
+  before_action -> { redirect_to_store notice: "カートは空です"}, only: %i[new create], if: -> { @cart.items.empty? }
 
   def new
-    @cart = current_cart_or_create
-    if @cart.items.empty?
-      redirect_to store_url, notice: "カートは空です"
-      return
-    end
-
     @order = Order.new
   end
 
   def create
-    @order = Order.new(order_params)
-    cart = current_cart_or_create
-    @order.add_items_from_cart(cart)
+    @order = Order.new(order_params.merge(items: @cart.items.map{ |item| OrderItem.from_cart_item(item) }))
 
     if @order.save
-      cart.items.clear
+      @cart.items.clear
       if @order.pay_type == :credit_card
         session[:order_id] = @order.id
         redirect_to credit_card_form_orders_url
@@ -74,6 +68,14 @@ class OrdersController < ApplicationController
 
     def set_order_pending_payment
       @order = Order.find_by(id: session[:order_id], status: :pending_payment)
+    end
+
+    def set_cart
+      @cart = current_cart_or_create
+    end
+
+    def redirect_to_store(*args)
+      redirect_to store_index_url, *args
     end
 
     # Only allow a trusted parameter "white list" through.
