@@ -3,7 +3,10 @@ class OrdersController < ApplicationController
 
   before_action :set_order_pending_payment, only: %i[credit_card_form pay_credit_card]
   before_action :set_cart, only: %i[new create]
-  before_action -> { redirect_to_store notice: "カートは空です"}, only: %i[new create], if: -> { @cart.items.empty? }
+
+  # 必要になるまでシンプルに書いておく
+  # before_action -> { redirect_to_store notice: "カートは空です"}, only: %i[new create], if: -> { @cart.items.empty? }
+  before_action -> { redirect_to store_index_url, notice: "カートは空です" }, only: %i[new create], if: -> { @cart.items.empty? }
 
   def new
     @order = Order.new
@@ -28,9 +31,14 @@ class OrdersController < ApplicationController
   def credit_card_form
   end
 
+  # クレジット系の処理は別コントローラにまとめると役割がすっきりするかも
+  # PaymentsController の new / createなど
   def pay_credit_card
+    # 設定系なのでinitializerに移した方がよさそう
     Payjp::api_key = ENV['PAYJP_API_SECRET']
 
+    # メソッドにわけるとスッキリしてみとおしがよくなりそう
+    # PaymentsControllerにしてprivateメソッドにする（params[:payjp_token]のあたり）
     payjp_input = {
       amount: @order.total_price.to_i,
       card: params[:payjp_token],
@@ -55,6 +63,7 @@ class OrdersController < ApplicationController
 
     redirect_to store_index_url, notice: I18n.t(".thanks_creditcard")
 
+  #   例外キャッチのスコープが広いので、updateの部分のみに絞ると良さそう
   rescue
     # 確保した支払い額を返金
     if charge
@@ -70,13 +79,15 @@ class OrdersController < ApplicationController
       @order = Order.find_by(id: session[:order_id], status: :pending_payment)
     end
 
-    def set_cart
-      @cart = current_cart_or_create
-    end
+    # ApplicationControllerにまかせた
+    # def set_cart
+    #   @cart = current_cart_or_create
+    # end
 
-    def redirect_to_store(*args)
-      redirect_to store_index_url, *args
-    end
+    # YAGNI的に必要になった時に作りたい
+    # def redirect_to_store(*args)
+    #   redirect_to store_index_url, *args
+    # end
 
     # Only allow a trusted parameter "white list" through.
     def order_params

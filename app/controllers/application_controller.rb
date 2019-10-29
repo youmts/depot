@@ -19,11 +19,9 @@ class ApplicationController < ActionController::Base
       { locale: I18n.locale }
     end
 
-    def current_cart_or_create
-      Cart.find(session[:cart_id])
-    rescue ActiveRecord::RecordNotFound
-      cart = Cart.create
-      session[:cart_id] = cart.id
-      cart
+    # @cartはここで定義して、必要なコントローラーが適宜呼び出すようにする
+    def set_cart
+      @cart ||= Cart.find_or_create_by!(id: session[:cart_id])
+      session[:cart_id] = @cart.id
     end
 end
